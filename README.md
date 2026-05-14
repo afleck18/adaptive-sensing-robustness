@@ -71,6 +71,7 @@ Nominal sensing produces bounded uncertainty and near-synchronous detection beha
 ### State Dynamics
 
 A nonlinear 2D dynamical system was simulated and propagated through noisy sensing models.
+
 $$
 x_{k + 1} = f(x_k,u_k) + w_k
 $$
@@ -80,6 +81,7 @@ Nominal sensing introduces Gaussian measurement noise. Geometry-dependent sensin
 
 ### EKF Overview
 An Extended Kalman Filter (EKF) performs nonlinear prediction and measurement updates using degraded observations.
+
 $$
 z_k = h(x_k) + v_k
 $$
