@@ -39,7 +39,11 @@
 ## Quickstart
 
 ```python
+git clone https://github.com/afleck18/adaptive-sensing-robustness.git
+cd adaptive-sensing-robustness
+
 pip install -r requirements.txt
+
 python main.py
 ```
 

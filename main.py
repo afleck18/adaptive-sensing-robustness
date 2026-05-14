@@ -57,10 +57,8 @@ def run(experiment):
         residual_avg = 0.9 * residual_avg + 0.1 * residual_norm
         u_ours = residual_avg
 
-        # margin
         margin = np.clip(R_safe - np.linalg.norm(x_est[:2]), -1.0, R_safe)
 
-        # risk
         r_ekf = risk(u_ekf, margin)
         r_ours = risk(u_ours, margin)
 
@@ -77,7 +75,6 @@ def run(experiment):
         r_ours_list.append(r_ours)
         system_stab_list.append(stability)
 
-    # stability
     A_list, stability = estimate_dynamics_windowed(
         np.array(x_est_list),
         window=10,
@@ -100,18 +97,15 @@ def run(experiment):
 
     return results
 
-    
+def run_all():
+    experiments = ["direct","ranged", "vision"]
+    exp_results = {}
+    for experiment in experiments:
+        np.random.seed(0)
+        results = run(experiment)
+        exp_results[experiment] = {"results": results}
+
+    plot_all(exp_results, experiments)
 
 if __name__ == "__main__":
-
-    experiments = ["direct","ranged", "vision"]
-    if len(experiments) > 0:
-        exp_results = {}
-        for experiment in experiments:
-            np.random.seed(0)
-            results = run(experiment)
-            exp_results[experiment] = {"results": results}
-
-        plot_all(exp_results, experiments)
-    else:
-        print("Add experiment type: base, ranged, or vision")
+    run_all()
