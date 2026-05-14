@@ -4,14 +4,21 @@
 
 This project studies how sensing degradation affects state estimation robustness in dynamical systems. An Extended Kalman Filter (EKF) is evaluated under three sensing regimes: nominal sensing, geometry-dependent sensing, and perception-driven sensing with intermittent tracking failures. Residual-based uncertainty and risk metrics are compared against covariance-based EKF confidence estimates to analyze detection delay, estimator stability, and failure behavior under imperfect perception.
 
+## System Overview
+![System Structure](supporting_figures/system_diagram.png)
+
 ## Core Questions
 * How does sensing degradation affect estimator stability?
 * When does EKF covariance fail to reflect true sensing uncertainty?
 * Can residual-based metrics detect degradation earlier than covariance-based confidence estimates?
 * How do different sensing modalities produce different estimator failure modes?
 
-## System Overview
-![System Structure](supporting_figures/system_diagram.png)
+## Key Findings
+
+* Residual disagreement detects sensing degradation earlier than covariance-based confidence estimates.
+* Geometry-dependent and perception-like sensing produce delayed EKF awareness despite increasing measurement uncertainty.
+* Tracking loss and perception degradation produce distinct uncertainty signatures.
+* Stability metrics reveal when estimator confidence no longer reflects sensing reliability.
 
 ## Measurement Modalities
 
