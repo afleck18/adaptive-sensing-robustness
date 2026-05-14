@@ -4,6 +4,13 @@
 
 This project studies how sensing degradation affects state estimation robustness in dynamical systems. An Extended Kalman Filter (EKF) is evaluated under three sensing regimes: nominal sensing, geometry-dependent sensing, and perception-driven sensing with intermittent tracking failures. Residual-based uncertainty and risk metrics are compared against covariance-based EKF confidence estimates to analyze detection delay, estimator stability, and failure behavior under imperfect perception.
 
+## Key Findings
+
+* Residual disagreement detects sensing degradation earlier than covariance-based confidence estimates.
+* Geometry-dependent and perception-like sensing produce delayed EKF awareness despite increasing measurement uncertainty.
+* Tracking loss and perception degradation produce distinct uncertainty signatures.
+* Stability metrics reveal when estimator confidence no longer reflects sensing reliability.
+
 ## System Overview
 ![System Structure](supporting_figures/system_diagram.png)
 
@@ -13,12 +20,6 @@ This project studies how sensing degradation affects state estimation robustness
 * Can residual-based metrics detect degradation earlier than covariance-based confidence estimates?
 * How do different sensing modalities produce different estimator failure modes?
 
-## Key Findings
-
-* Residual disagreement detects sensing degradation earlier than covariance-based confidence estimates.
-* Geometry-dependent and perception-like sensing produce delayed EKF awareness despite increasing measurement uncertainty.
-* Tracking loss and perception degradation produce distinct uncertainty signatures.
-* Stability metrics reveal when estimator confidence no longer reflects sensing reliability.
 
 ## Measurement Modalities
 
@@ -28,6 +29,17 @@ This project studies how sensing degradation affects state estimation robustness
 | Geometry-dependent sensing | Noise increases with distance                     | Gradual degradation |
 | Perception-driven sensing  | Distance degradation + intermittent tracking loss | Bursty instability  |
 
+## Repository Structure
+
+- `src/` — dynamics, sensing, estimation, and metric implementations
+- `configs/` — experiment configurations
+- `figures/` — generated figures and diagrams
+- `experiments/` — experiment execution scripts
+
+## Quickstart
+
+pip install -r requirements.txt\
+python main.py
 
 ## Key Results
 ![System Trajectory](results/trajectory.png)
@@ -85,10 +97,9 @@ Across geometry-dependent and perception-driven sensing regimes, residual-based 
 Stability analysis evaluated whether estimator disagreement was dominated by underlying system dynamics or by sensing degradation. Under nominal sensing, stability remained largely bounded despite nonlinear motion. In geometry-dependent and perception-driven sensing regimes, measurement degradation increasingly dominated the stability metric, indicating that sensing uncertainty rather than system dynamics became the primary driver of estimator instability.
 
 ## Future Work
-* Incorporate learned perception uncertainty models rather than handcrafted degradation schedules.
-* Extend evaluation to higher-dimensional nonlinear systems and multi-agent estimation settings.
-* Investigate adaptive covariance calibration under intermittent sensing failures.
-
+* Adaptive covariance calibration
+* Learned uncertainty estimation
+* Higher-dimensional systems
 
 ## Conclusion
 This project demonstrates how sensing degradation can produce estimator failure modes that are not fully captured by covariance-based confidence estimates alone. Residual-based diagnostics provide earlier indicators of instability under degraded perception and geometry-dependent sensing conditions. These behaviors become increasingly important in autonomous systems operating under unreliable perception, partial observability, or safety-critical sensing constraints.
