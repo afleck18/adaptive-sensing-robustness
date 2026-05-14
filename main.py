@@ -7,11 +7,7 @@ from src.sensing.vision import vision_measurement
 from src.metrics.base import risk, get_stability
 from src.estimation.system_id import estimate_dynamics_windowed,get_A
 from src.estimation.ekf import EKF
-from src.utils.plotting import plot_all
-
-# =========================
-# MAIN
-# =========================
+from src.utils.plotting import plot_trajectory,plot_uncertainty,plot_risk,plot_stability
 
 def run(experiment):
     T = 200
@@ -46,7 +42,6 @@ def run(experiment):
 
         x_est, P, residual = ekf.step(y,t,dt)
 
-        # uncertainties
         u_ekf = np.trace(P[:2,:2]) / np.trace(np.eye(4)[:2,:2])
         
         if y is None:
@@ -105,7 +100,10 @@ def run_all():
         results = run(experiment)
         exp_results[experiment] = {"results": results}
 
-    plot_all(exp_results, experiments)
+    plot_trajectory(exp_results, experiments)
+    plot_uncertainty(exp_results, experiments)
+    plot_risk(exp_results, experiments)
+    plot_stability(exp_results, experiments)
 
 if __name__ == "__main__":
     run_all()

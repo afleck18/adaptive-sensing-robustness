@@ -3,8 +3,7 @@ import numpy as np
 
 from src.utils.general import moving_average, first_crossing
 
-def plot_all(exp_results, experiments):
-    
+def plot_trajectory(exp_results, experiments):
     fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4))
     for i in range(len(experiments)):
         experiment = experiments[i]
@@ -42,10 +41,8 @@ def plot_all(exp_results, experiments):
     plt.savefig('results/trajectory.png')
     plt.show()
 
-    
-    # 2 uncertainty
+def plot_uncertainty(exp_results, experiments):
     fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4), sharey=True)
-    
     max_y_value = 0
     for exp in experiments:
         u_ours = exp_results[exp]["results"]["u_ours"]
@@ -62,7 +59,7 @@ def plot_all(exp_results, experiments):
 
         u_ours = exp_results[experiment]["results"]["u_ours"]
 
-        if experiment == "base":
+        if experiment == "direct":
             desc = "nominal sensing"
 
         if experiment == "ranged":
@@ -82,8 +79,8 @@ def plot_all(exp_results, experiments):
     plt.tight_layout(pad=2)
     plt.savefig('results/uncertainty.png')
     plt.show()
-    
-    # 3 risk
+
+def plot_risk(exp_results, experiments):
     fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4),sharey=True)
 
     for i in range(len(experiments)):
@@ -93,7 +90,7 @@ def plot_all(exp_results, experiments):
         r_ekf = exp_results[experiment]["results"]["r_ekf"]
         r_ours = exp_results[experiment]["results"]["r_ours"]
 
-        if experiment == "base":
+        if experiment == "direct":
             desc = "nominal sensing"
 
         if experiment == "ranged":
@@ -139,8 +136,7 @@ def plot_all(exp_results, experiments):
     plt.savefig('results/risk.png')
     plt.show()
 
-    
-    # 4 stability
+def plot_stability(exp_results, experiments):
     fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4),sharey=True)
 
     max_y_value = 0
@@ -158,7 +154,7 @@ def plot_all(exp_results, experiments):
         sys_stability = exp_results[experiment]["results"]["system_stability"]
         meas_stability = exp_results[experiment]["results"]["meas_stability"]
 
-        if experiment == "base":
+        if experiment == "direct":
             desc = "nominal sensing"
 
         if experiment == "ranged":
