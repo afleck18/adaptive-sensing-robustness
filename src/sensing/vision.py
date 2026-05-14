@@ -1,0 +1,22 @@
+import numpy as np
+
+def vision_measurement(x, t):
+
+    pos = x[:2]
+
+    noise_std = 0.05 + 0.12 * np.linalg.norm(pos)
+    # baseline
+    y = pos + noise_std * np.random.randn(2)
+    
+    if np.linalg.norm(pos) > 4.0:
+        dropout_prob = 0.20
+    else:
+        dropout_prob = 0.0
+
+    if np.random.rand() < dropout_prob:
+        return None
+    
+
+    y += np.array([0.001 * t, -0.0005 * t])
+
+    return y
