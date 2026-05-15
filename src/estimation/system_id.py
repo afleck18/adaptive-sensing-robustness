@@ -3,23 +3,12 @@ import numpy as np
 def estimate_dynamics_windowed(
     x_est,
     window=10,
-    reg=1e-2,
-    return_stability=False
+    reg=1e-2
 ):
     """
     Estimate time-varying linear dynamics A_hat(t) using sliding window least squares.
 
     x_{t+1} ≈ A_hat x_t
-
-    Args:
-        x_est: (T, n) array of estimated states
-        window: number of timesteps per regression window
-        reg: ridge regularization strength
-        return_stability: if True, also returns lambda_max over time
-
-    Returns:
-        A_list: list of (n, n) matrices
-        stability (optional): list of lambda_max values
     """
 
     T, n = x_est.shape
@@ -44,39 +33,10 @@ def estimate_dynamics_windowed(
 
         A_list.append(A_hat)
 
-        if return_stability:
-            A_sym = 0.5 * (A_hat + A_hat.T)
-            eigvals = np.linalg.eigvals(A_sym).real
-            lambda_max = np.max(eigvals)
-            stability.append(lambda_max)
+        A_sym = 0.5 * (A_hat + A_hat.T)
+        eigvals = np.linalg.eigvals(A_sym).real
+        lambda_max = np.max(eigvals)
+        stability.append(lambda_max)
 
-    if return_stability:
-        return A_list, np.array(stability)
 
-    return A_list
-
-def get_A(t, dt):
-    """
-        Provides system stability variable 
-
-        Args:
-            t: current timestep in system simulation
-            dt: time between timesteps
-
-        Returns:
-            A: system stability variable 
-        """
-    if t < 100:
-        return np.array([
-            [1, 0, dt, 0],
-            [0, 1, 0, dt],
-            [0, 0, 0.98, 0],
-            [0, 0, 0, 0.98],
-        ])
-    else:
-        return np.array([
-            [1, 0, dt, 0],
-            [0, 1, 0, dt],
-            [0, 0, 1.02, 0],
-            [0, 0, 0, 1.02],
-        ])
+    return A_list, np.array(stability)

@@ -2,9 +2,12 @@ import numpy as np
 
 def vision_measurement(x, t):
     """
-    Ranged measurements take the true value, add noise
-    as a function of position, add observation dropout
-    past a set distance and return the observed value.
+        Vision-like sensing:
+        Measurement noise increases with distance from the origin,
+        simulating degradation in sensing quality as the target
+        moves farther from the observer. Additionally, intermittent
+        tracking loss simulates systems in which the object of interest
+        is dropped.
     """
     pos = x[:2]
 

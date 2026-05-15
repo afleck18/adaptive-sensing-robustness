@@ -4,8 +4,8 @@ from src.simulation.dynamics import simulate_system
 from src.sensing.direct import direct_measurement
 from src.sensing.range import ranged_measurement
 from src.sensing.vision import vision_measurement
-from src.metrics.base import risk, get_stability
-from src.estimation.system_id import estimate_dynamics_windowed,get_A
+from src.metrics.base import risk, get_system_stability
+from src.estimation.system_id import estimate_dynamics_windowed
 from src.estimation.ekf import EKF
 from src.utils.plotting import plot_trajectory,plot_uncertainty,plot_risk,plot_stability
 
@@ -61,8 +61,7 @@ def run(experiment):
         r_ekf = risk(u_ekf, margin)
         r_ours = risk(u_ours, margin)
 
-        A = get_A(t,dt)
-        stability = get_stability(A)
+        A, system_stability = get_system_stability(t,dt)
 
         t_list.append(t)
         x_true_list.append(x)
@@ -72,13 +71,12 @@ def run(experiment):
         u_ours_list.append(u_ours)
         r_ekf_list.append(r_ekf)
         r_ours_list.append(r_ours)
-        system_stab_list.append(stability)
+        system_stab_list.append(system_stability)
 
-    A_list, stability = estimate_dynamics_windowed(
+    A_list, measurement_stability = estimate_dynamics_windowed(
         np.array(x_est_list),
         window=10,
-        reg=1e-2,
-        return_stability=True
+        reg=1e-2
     )
 
     results = {
@@ -91,7 +89,7 @@ def run(experiment):
         "r_ekf": np.array(r_ekf_list),
         "r_ours": np.array(r_ours_list),
         "system_stability": np.array(system_stab_list),
-        "meas_stability": stability
+        "meas_stability": measurement_stability
     }
 
     return results

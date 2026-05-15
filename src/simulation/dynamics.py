@@ -2,8 +2,8 @@ import numpy as np
 
 def simulate_system(T, dt):
     """
-    Simulates system for all time values. System dynamics
-    were manually changed after t=100
+        Simulates system for all time values. System dynamics
+        were manually changed after t=100
     """
     x = np.zeros((T, 4))
     x[0] = [1.0, 0.5, 0.8, 0.2]

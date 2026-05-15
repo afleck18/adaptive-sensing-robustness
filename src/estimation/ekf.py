@@ -1,5 +1,5 @@
 import numpy as np
-from src.estimation.system_id import get_A
+from src.metrics.base import get_system_stability
 
 class EKF:
     def __init__(self, dt):
@@ -25,18 +25,10 @@ class EKF:
 
     def step(self, y, t, dt):
         """
-        Takes current system state and uses it to predict and 
-        update the new state of the system.
-
-        Args:
-            y: (2,) array of estimated system state
-            t: current timestep in system simulation
-            dt: time between timesteps
-
-        Returns:
-            x: predicted state of the system
-            P: covariance of EKF
-            residual: innovation residual of EKF
+            Takes current system state and uses it to predict and 
+            update the new state of the system. Residual disagreement 
+            is used as an indicator of estimator inconsistency under 
+            degraded sensing conditions.
         """
         x_pred = self.F @ self.x
         P_pred = self.F @ self.P @ self.F.T + self.Q
@@ -56,6 +48,8 @@ class EKF:
 
         noise_std = 0.05 + 0.15 * np.linalg.norm(x_est[:2])
         self.R = (noise_std**2) * np.eye(2)
-        self.F = get_A(t,dt)
+
+        A, _ = get_system_stability(t,dt)
+        self.F = A
 
         return self.x, self.P, residual
