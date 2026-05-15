@@ -5,11 +5,17 @@ import numpy as np
 # =========================
 
 def get_stability(A):
+    """
+    Calculates stability
+    """
     A_sym = 0.5 * (A + A.T)
     return np.max(np.abs(np.linalg.eigvals(A_sym).real))
 
 
 def risk(uncertainty, margin):
+    """
+    Calculates and normalizes risk as a function of uncertainty.
+    """
     ratio = uncertainty / (abs(margin) + 1e-3)
     risk = ratio / (1 + ratio)
     return risk

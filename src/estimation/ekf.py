@@ -24,14 +24,26 @@ class EKF:
         self.P = np.eye(4)
 
     def step(self, y, t, dt):
-        # predict
+        """
+        Takes current system state and uses it to predict and 
+        update the new state of the system.
+
+        Args:
+            y: (2,) array of estimated system state
+            t: current timestep in system simulation
+            dt: time between timesteps
+
+        Returns:
+            x: predicted state of the system
+            P: covariance of EKF
+            residual: innovation residual of EKF
+        """
         x_pred = self.F @ self.x
         P_pred = self.F @ self.P @ self.F.T + self.Q
 
         if y is None:
             return x_pred, P_pred, None
 
-        # update
         y_pred = self.H @ x_pred
         residual = y - y_pred
 

@@ -10,6 +10,10 @@ from src.estimation.ekf import EKF
 from src.utils.plotting import plot_trajectory,plot_uncertainty,plot_risk,plot_stability
 
 def run(experiment):
+    """
+    Runs either "direct", "ranged", or "vision"
+    experiment. Outputting all results.
+    """
     T = 200
     dt = 0.1
     R_safe = 5.0
@@ -93,6 +97,9 @@ def run(experiment):
     return results
 
 def run_all():
+    """
+    Runs and plots all experiments.
+    """
     experiments = ["direct","ranged", "vision"]
     exp_results = {}
     for experiment in experiments:

@@ -56,6 +56,16 @@ def estimate_dynamics_windowed(
     return A_list
 
 def get_A(t, dt):
+    """
+        Provides system stability variable 
+
+        Args:
+            t: current timestep in system simulation
+            dt: time between timesteps
+
+        Returns:
+            A: system stability variable 
+        """
     if t < 100:
         return np.array([
             [1, 0, dt, 0],

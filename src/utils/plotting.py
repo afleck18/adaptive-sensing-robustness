@@ -4,6 +4,9 @@ import numpy as np
 from src.utils.general import moving_average, first_crossing
 
 def plot_trajectory(exp_results, experiments):
+    """
+    Plots both true and EKF predicted trajectory using the data points.
+    """
     fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4))
     for i in range(len(experiments)):
         experiment = experiments[i]
@@ -42,6 +45,9 @@ def plot_trajectory(exp_results, experiments):
     plt.show()
 
 def plot_uncertainty(exp_results, experiments):
+    """
+    Plots both covariance and residual based uncertainties.
+    """
     fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4), sharey=True)
     max_y_value = 0
     for exp in experiments:
@@ -81,6 +87,9 @@ def plot_uncertainty(exp_results, experiments):
     plt.show()
 
 def plot_risk(exp_results, experiments):
+    """
+    Plots both covariance and residual based risks.
+    """
     fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4),sharey=True)
 
     for i in range(len(experiments)):
@@ -137,6 +146,9 @@ def plot_risk(exp_results, experiments):
     plt.show()
 
 def plot_stability(exp_results, experiments):
+    """
+    Plots both system stability and measured stability.
+    """
     fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4),sharey=True)
 
     max_y_value = 0
