@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Robust state estimation and sensing-aware observer design for partially observed dynamical systems under uncertainty.
+Robust estimation and sensing-aware inference for partially observed dynamical systems under uncertainty.
 
 This project studies how sensing degradation affects state estimation robustness in dynamical systems. An Extended Kalman Filter (EKF) is evaluated under three sensing regimes: nominal sensing, geometry-dependent sensing, and perception-driven sensing with intermittent tracking failures. Residual-based uncertainty and risk metrics are compared against covariance-based EKF confidence estimates to analyze detection delay, estimator stability, and failure behavior under imperfect perception.
 
