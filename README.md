@@ -40,7 +40,7 @@ This project studies how sensing degradation affects state estimation robustness
 
 ## Quickstart
 
-```python
+```bash
 git clone https://github.com/afleck18/adaptive-sensing-robustness.git
 cd adaptive-sensing-robustness
 
