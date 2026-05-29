@@ -3,7 +3,7 @@
 
 This repository studies how degraded sensing alters estimator awareness, uncertainty behavior, and stability estimation in partially observed dynamical systems undergoing destabilizing dynamics.
 
-The implemented systems combine nonlinear observers, recursive filtering, sensing-aware uncertainty analysis, and contraction-inspired robustness diagnostics to study how sensing structure influences estimator convergence, uncertainty awareness, and stability under incomplete or unreliable observations.
+The implemented systems combine nonlinear observers, recursive filtering, sensing-aware uncertainty analysis, and stability-inspired robustness diagnostics to study how sensing structure influences estimator convergence, uncertainty awareness, and stability under incomplete or unreliable observations.
 
 Current experiments focus on geometry-dependent and intermittently degraded sensing regimes, where estimator confidence may diverge from true sensing reliability.
 
