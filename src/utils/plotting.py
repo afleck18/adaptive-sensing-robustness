@@ -28,14 +28,14 @@ def plot_trajectory(exp_results, experiments):
             desc = "geometry-dependent sensing"
         
         if experiment == "vision":
-            desc = "perception-driven sensing"
+            desc = "intermittently degraded sensing"
             
         axs[i].plot(x_true[:,0], x_true[:,1], 'k--', label="True",linewidth=2.5)
         axs[i].plot(x_est[:,0], x_est[:,1], 'b', label="EKF",linewidth=1.1, alpha =0.6)
         axs[i].scatter(y_plot[:,0], y_plot[:,1], s=10, alpha=0.2)
         circle = plt.Circle((0,0), 5.0, fill=False, linestyle='--',alpha=0.6,linewidth=0.8)
         axs[i].add_patch(circle)
-        axs[i].set_title(f'Trajectory ({desc})')
+        axs[i].set_title(f'Estimator Behavior ({desc})')
         if i == 0:
             axs[i].legend()
         axs[i].axis("equal")
@@ -72,7 +72,7 @@ def plot_uncertainty(exp_results, experiments):
             desc = "geometry-dependent sensing"
         
         if experiment == "vision":
-            desc = "perception-driven sensing"
+            desc = "intermittently degraded sensing"
 
         axs[i].plot(u_ekf, label="EKF")
         axs[i].plot(u_ours, label="Residual disagreement")
@@ -90,7 +90,7 @@ def plot_risk(exp_results, experiments):
     """
     Plots both covariance and residual based risks.
     """
-    fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4),sharey=True)
+    fig, axs = plt.subplots(1, len(experiments), figsize=(18, 4),sharey=True)
 
     for i in range(len(experiments)):
         experiment = experiments[i]
@@ -106,7 +106,7 @@ def plot_risk(exp_results, experiments):
             desc = "geometry-dependent sensing"
         
         if experiment == "vision":
-            desc = "perception-driven sensing"
+            desc = "intermittently degraded sensing"
             
         threshold = 0.6
         t_ekf = first_crossing(r_ekf, threshold)
@@ -137,7 +137,7 @@ def plot_risk(exp_results, experiments):
             axs[i].text(max(t_ekf,t_res)+5,-0.01,'Detection \ndelay')
         else:
             axs[i].text(min(t_ekf,t_res)-105,0.65,'Comparable detection \ntiming')
-        axs[i].set_title(f'Risk ({desc})')
+        axs[i].set_title(f'Operational Risk Response ({desc})')
         if i == 0:
             axs[i].legend(loc="upper left")
 
@@ -149,7 +149,7 @@ def plot_stability(exp_results, experiments):
     """
     Plots both system stability and measured stability.
     """
-    fig, axs = plt.subplots(1, len(experiments), figsize=(15, 4),sharey=True)
+    fig, axs = plt.subplots(1, len(experiments), figsize=(18, 4),sharey=True)
 
     max_y_value = 0
     for exp in experiments:
@@ -173,17 +173,17 @@ def plot_stability(exp_results, experiments):
             desc = "geometry-dependent sensing"
         
         if experiment == "vision":
-            desc = "perception-driven sensing"
+            desc = "intermittently degraded sensing"
             
         t = np.arange(len(meas_stability)) + 10
         
-        axs[i].plot(sys_stability, label="True system stability")
-        axs[i].plot(t, meas_stability, label="Estimated stability (from observations)")
+        axs[i].plot(sys_stability, label="Nominal stability baseline")
+        axs[i].plot(t, meas_stability, label="Observation-derived stability estimate")
         axs[i].axvline(100, linestyle='--', alpha=0.2)
         axs[i].axhline(0, linestyle='--')
         axs[i].axhline(1.0, linestyle='--', alpha=0.3)
         axs[i].set_ylim(0, max_y_value)
-        axs[i].set_title(f'Stability ({desc})')
+        axs[i].set_title(f'Estimated Stability Margin ({desc})')
         if i == 0:
             axs[i].legend(loc="upper left")
 
