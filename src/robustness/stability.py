@@ -1,5 +1,4 @@
 import numpy as np
-
 # =========================
 # METRICS
 # =========================
@@ -29,12 +28,3 @@ def get_system_stability(t,dt):
     stability = np.max(np.abs(np.linalg.eigvals(A_sym).real))
 
     return A, stability
-
-
-def risk(uncertainty, margin):
-    """
-        Risk is normalized relative to the predefined safe operating radius.
-    """
-    ratio = uncertainty / (abs(margin) + 1e-3)
-    risk = ratio / (1 + ratio)
-    return risk

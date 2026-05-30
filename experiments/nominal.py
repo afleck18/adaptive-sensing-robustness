@@ -2,8 +2,6 @@ import numpy as np
 
 from src.systems.dynamics import simulate_system
 from src.sensing.direct import direct_measurement
-from src.sensing.range import ranged_measurement
-from src.sensing.vision import vision_measurement
 from src.robustness.risk import risk
 from src.robustness.stability import get_system_stability
 from src.robustness.uncertainty import compute_uncertainty
@@ -11,7 +9,7 @@ from src.estimation.system_id import estimate_dynamics_windowed
 from src.estimation.ekf import EKF
 from src.utils.plotting import plot_trajectory,plot_uncertainty,plot_risk,plot_stability
 
-def run(experiment):
+def run():
     """
     Runs either "direct", "ranged", or "vision"
     experiment. Outputting all results.
@@ -36,15 +34,7 @@ def run(experiment):
     system_stab_list = []
     for t in range(T):
         x = x_true[t]
-
-        if experiment == "nominal":
-            y = direct_measurement(x)
-
-        if experiment == "geometry_degraded":
-            y = ranged_measurement(x)
-
-        if experiment == "intermittent_degraded":
-            y = vision_measurement(x,t)
+        y = direct_measurement(x)
 
         x_est, P, residual = ekf.step(y,t,dt)
 
@@ -88,21 +78,11 @@ def run(experiment):
 
     return results
 
-def run_all():
-    """
-    Runs and plots all experiments.
-    """
-    experiments = ["nominal","geometry_degraded", "intermittent_degraded"]
-    exp_results = {}
-    for experiment in experiments:
-        np.random.seed(0)
-        results = run(experiment)
-        exp_results[experiment] = {"results": results}
-
-    plot_trajectory(exp_results, experiments, save_plot = False)
-    plot_uncertainty(exp_results, experiments, save_plot = False)
-    plot_risk(exp_results, experiments, save_plot = False)
-    plot_stability(exp_results, experiments, save_plot = False)
-
 if __name__ == "__main__":
-    run_all()
+    np.random.seed(0)
+    results = run()
+
+    plot_trajectory(results, 'nominal', save_plot = False)
+    plot_uncertainty(results, 'nominal', save_plot = False)
+    plot_risk(results, 'nominal', save_plot = False)
+    plot_stability(results, 'nominal', save_plot = False)

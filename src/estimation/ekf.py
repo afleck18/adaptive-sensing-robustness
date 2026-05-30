@@ -1,5 +1,5 @@
 import numpy as np
-from src.metrics.base import get_system_stability
+from src.robustness.stability import get_system_stability
 
 class EKF:
     def __init__(self, dt):
