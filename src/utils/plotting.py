@@ -294,12 +294,12 @@ def plot_stability(exp_results, experiments, save_plot=False):
             t = np.arange(len(meas_stability)) + 10
             
             axs[i].plot(sys_stability, label="Nominal stability baseline")
-            axs[i].plot(t, meas_stability, label="Observation-derived stability estimate")
+            axs[i].plot(t, meas_stability, label="Spectral stability estimate")
             axs[i].axvline(100, linestyle='--', alpha=0.2)
             axs[i].axhline(0, linestyle='--')
             axs[i].axhline(1.0, linestyle='--', alpha=0.3)
             axs[i].set_ylim(0, max_y_value)
-            axs[i].set_title(f'Estimated Stability Margin ({desc})')
+            axs[i].set_title(f'Estimated Local Stability ({desc})')
             if i == 0:
                 axs[i].legend(loc="upper left")
 
@@ -329,12 +329,12 @@ def plot_stability(exp_results, experiments, save_plot=False):
         
         fig, ax = plt.subplots()
         ax.plot(sys_stability, label="Nominal stability baseline")
-        ax.plot(t, meas_stability, label="Observation-derived stability estimate")
+        ax.plot(t, meas_stability, label="Spectral stability estimate")
         ax.axvline(100, linestyle='--', alpha=0.2)
         ax.axhline(0, linestyle='--')
         ax.axhline(1.0, linestyle='--', alpha=0.3)
         ax.set_ylim(0, max_y_value)
-        ax.set_title(f'Estimated Stability Margin ({desc})')
+        ax.set_title(f'Estimated Local Stability ({desc})')
         ax.legend(loc="upper left")
 
     plt.tight_layout(pad=2)

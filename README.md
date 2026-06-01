@@ -1,11 +1,28 @@
 # Adaptive Sensing & Robust Estimation
-## Stability-aware inference for partially observed dynamical systems under uncertainty
+## Research platform for partially observed dynamical systems under uncertainty.
 
 This repository studies how degraded sensing alters estimator awareness, uncertainty behavior, and stability estimation in partially observed dynamical systems undergoing destabilizing dynamics.
 
 The implemented systems combine nonlinear observers, recursive filtering, sensing-aware uncertainty analysis, and stability-inspired robustness diagnostics to study how sensing structure influences estimator convergence, uncertainty awareness, and stability under incomplete or unreliable observations.
 
 Current experiments focus on geometry-dependent and intermittently degraded sensing regimes, where estimator confidence may diverge from true sensing reliability.
+
+## Research Context
+
+This repository supports ongoing research into robust
+estimation and stability analysis for partially observed
+dynamical systems.
+
+The broader goal is to understand how sensing structure,
+measurement uncertainty, and observation quality influence:
+
+• estimator convergence
+• uncertainty awareness
+• reconstruction quality
+• stability certification
+
+Current experiments focus on nonlinear observers operating
+under geometry-dependent and intermittently degraded sensing.
 
 ## Research Themes
 
@@ -18,6 +35,14 @@ Current experiments focus on geometry-dependent and intermittently degraded sens
 - Uncertainty quantification
 - Robust sensing systems
 - Nonlinear observers
+
+## Applications include:
+
+- Autonomous sensing systems
+- Tracking and navigation
+- Remote sensing
+- Environmental monitoring
+- Learning-enabled estimation pipelines
 
 ## Overview
 
@@ -114,7 +139,7 @@ Residual-based diagnostics respond earlier and more aggressively to sensing unre
 
 **Figure 3. Observation-derived stability estimation under degraded sensing conditions.**
 
-_Comparison between nominal stability behavior and observation-derived stability estimates across sensing regimes. Under nominal sensing, estimated stability remains comparatively bounded and consistent. Geometry-dependent and intermittently degraded sensing produce amplified stability fluctuations and transient instability excursions despite identical underlying system dynamics._
+_Comparison between nominal stability behavior and observation-derived stability estimates across sensing regimes. Under nominal sensing, estimated stability remains comparatively bounded and consistent. Geometry-dependent and intermittently degraded sensing produce amplified stability fluctuations and transient instability excursions despite identical underlying system dynamics. Stability estimate obtained from the dominant eigenvalue magnitude of the symmetric component of a locally estimated dynamics operator._
 
 ### Degraded sensing distorts stability awareness
 

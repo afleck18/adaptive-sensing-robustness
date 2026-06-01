@@ -99,10 +99,10 @@ def run_all():
         results = run(experiment)
         exp_results[experiment] = {"results": results}
 
-    plot_trajectory(exp_results, experiments, save_plot = False)
-    plot_uncertainty(exp_results, experiments, save_plot = False)
-    plot_risk(exp_results, experiments, save_plot = False)
-    plot_stability(exp_results, experiments, save_plot = False)
+    plot_trajectory(exp_results, experiments, save_plot = True)
+    plot_uncertainty(exp_results, experiments, save_plot = True)
+    plot_risk(exp_results, experiments, save_plot = True)
+    plot_stability(exp_results, experiments, save_plot = True)
 
 if __name__ == "__main__":
     run_all()
