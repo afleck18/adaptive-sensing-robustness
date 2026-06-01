@@ -7,6 +7,23 @@ The implemented systems combine nonlinear observers, recursive filtering, sensin
 
 Current experiments focus on geometry-dependent and intermittently degraded sensing regimes, where estimator confidence may diverge from true sensing reliability.
 
+## Motivation
+
+Many real-world dynamical systems operate under incomplete,
+time-varying, and unreliable observations.
+
+Examples include:
+
+- autonomous sensing systems
+- tracking and navigation
+- remote sensing
+- environmental monitoring
+- learning-enabled estimation pipelines
+
+This repository investigates how sensing uncertainty influences
+state estimation, uncertainty awareness, and stability in
+partially observed dynamical systems.
+
 ## Research Context
 
 This repository supports ongoing research into robust
@@ -16,10 +33,10 @@ dynamical systems.
 The broader goal is to understand how sensing structure,
 measurement uncertainty, and observation quality influence:
 
-• estimator convergence
-• uncertainty awareness
-• reconstruction quality
-• stability certification
+- estimator convergence
+- uncertainty awareness
+- reconstruction quality
+- stability certification
 
 Current experiments focus on nonlinear observers operating
 under geometry-dependent and intermittently degraded sensing.
@@ -35,14 +52,6 @@ under geometry-dependent and intermittently degraded sensing.
 - Uncertainty quantification
 - Robust sensing systems
 - Nonlinear observers
-
-## Applications include:
-
-- Autonomous sensing systems
-- Tracking and navigation
-- Remote sensing
-- Environmental monitoring
-- Learning-enabled estimation pipelines
 
 ## Overview
 
